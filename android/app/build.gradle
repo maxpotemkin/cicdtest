@@ -162,6 +162,16 @@ android {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
+        storybookDev {
+            initWith debug
+            applicationIdSuffix ".storybook.dev"
+            matchingFallbacks = ['debug']
+        }
+        storybookRelease {
+            initWith release
+            applicationIdSuffix ".storybook"
+            matchingFallbacks = ['release']
+        }
     }
 
     // applicationVariants are e.g. debug, release
