@@ -124,6 +124,14 @@ def productionKeystorePropertiesFile = rootProject.file("production.keystore.pro
 def productionKeystoreProperties = new Properties()
 productionKeystoreProperties.load(new FileInputStream(productionKeystorePropertiesFile))
 
+println '-----'
+if(productionKeystoreProperties['keyAlias']){
+println 'has keyAlias'
+}
+else{
+println 'no keyAlias'
+}
+
 println productionKeystoreProperties
 
 android {
