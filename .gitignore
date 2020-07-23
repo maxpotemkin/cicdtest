@@ -63,3 +63,4 @@ buck-out/
 /ios/Pods/
 
 .env.production
+production.keystore.properties

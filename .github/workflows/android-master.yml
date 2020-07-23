@@ -23,6 +23,14 @@ jobs:
       env:
         PRODUCTION_CONFIG: ${{ secrets.PRODUCTION_CONFIG }}
       run: echo $PRODUCTION_CONFIG > .env.production
+    - name: Decode production keystore properties
+      env:
+        PRODUCTION_KEYSTORE_PROPERTIES: ${{ secrets.PRODUCTION_KEYSTORE_PROPERTIES }}
+      run: echo $PRODUCTION_KEYSTORE_PROPERTIES > ./android/production.keystore.properties
+    - name: Decode production keystore
+      env:
+        PRODUCTION_KEYSTORE: ${{ secrets.PRODUCTION_KEYSTORE }}
+      run: echo $PRODUCTION_KEYSTORE | base64 -d > ./android/app/production.keystore
     - name: Build with Gradle
       run: cd ./android && BABEL_ENV=production ./gradlew assembleRelease
     - name: Upload Artifact Apk
@@ -40,4 +48,3 @@ jobs:
       with:
         name: index.android.bundle.map
         path: android/app/build/generated/sourcemaps/react/release/
-        

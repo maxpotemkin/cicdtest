@@ -120,6 +120,11 @@ def jscFlavor = 'org.webkit:android-jsc:+'
  */
 def enableHermes = project.ext.react.get("enableHermes", false);
 
+def productionKeystorePropertiesFile = rootProject.file("production.keystore.properties")
+def productionKeystoreProperties = new Properties()
+productionKeystoreProperties.load(new FileInputStream(productionKeystorePropertiesFile))
+
+
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
 
@@ -151,6 +156,12 @@ android {
             keyAlias 'androiddebugkey'
             keyPassword 'android'
         }
+        release {
+            keyAlias productionKeystoreProperties['keyAlias']
+            keyPassword productionKeystoreProperties['keyPassword']
+            storeFile file(productionKeystoreProperties['storeFile'])
+            storePassword productionKeystoreProperties['storePassword']
+        }
     }
     buildTypes {
         debug {
@@ -160,7 +171,7 @@ android {
         release {
             // Caution! In production, you need to generate your own keystore file.
             // see https://reactnative.dev/docs/signed-apk-android.
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
