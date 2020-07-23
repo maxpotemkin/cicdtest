@@ -20,12 +20,12 @@ jobs:
     - name: install node_modules
       run: yarn install
     - name: Build with Gradle
-      run: cd ./android && ./gradlew assembleRelease
+      run: cd ./android && BABEL_ENV=production ./gradlew assembleRelease
     - name: Upload Artifact Apk
       uses: actions/upload-artifact@v2
       with:
         name: app-release.apk
-        path: android/app/build/outputs/apk/release/
+        path: android/app/build/outputs/apk/release/app-release.apk
     - name: Upload Artifact JS bundle
       uses: actions/upload-artifact@v2
       with:
@@ -35,7 +35,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: index.android.bundle.map
-        path: android/app/build/generated/sourcemap/react/release/
+        path: android/app/build/generated/sourcemaps/react/release/
 
   build-storybook:
 

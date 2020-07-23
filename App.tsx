@@ -26,6 +26,10 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
+import Config from "react-native-config";
+
+console.log('config', Config)
+
 declare const global: {HermesInternal: null | {}};
 
 const App = () => {
@@ -37,6 +41,8 @@ const App = () => {
           contentInsetAdjustmentBehavior="automatic"
           style={styles.scrollView}>
           <Header />
+          <Text style={styles.sectionTitle}>{Config.SECRET_WORD}</Text>
+          <Text style={styles.sectionTitle}>{Config.APPLICATION_ID}</Text>
           {global.HermesInternal == null ? null : (
             <View style={styles.engine}>
               <Text style={styles.footer}>Engine: Hermes</Text>
