@@ -42,6 +42,7 @@ const App = () => {
           style={styles.scrollView}>
           <Header />
           <Text style={styles.sectionTitle}>{Config.SECRET_WORD}</Text>
+          <Text style={styles.sectionTitle}>{Config.SECRET_KEY}</Text>
           <Text style={styles.sectionTitle}>{Config.APPLICATION_ID}</Text>
           {global.HermesInternal == null ? null : (
             <View style={styles.engine}>
