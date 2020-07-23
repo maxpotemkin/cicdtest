@@ -125,11 +125,16 @@ def productionKeystoreProperties = new Properties()
 productionKeystoreProperties.load(new FileInputStream(productionKeystorePropertiesFile))
 
 println '-----'
+println productionKeystorePropertiesFile
+assert file(productionKeystorePropertiesFile).exists()
+println '-----'
 if(productionKeystoreProperties['keyAlias']){
 println 'has keyAlias'
+println productionKeystoreProperties['keyAlias']
 }
 else{
 println 'no keyAlias'
+println productionKeystoreProperties['keyAlias']
 }
 
 println productionKeystoreProperties
