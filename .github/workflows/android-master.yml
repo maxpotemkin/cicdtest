@@ -22,7 +22,7 @@ jobs:
     - name: Decode production config
       env:
         PRODUCTION_CONFIG: ${{ secrets.PRODUCTION_CONFIG }}
-      run: echo $PRODUCTION_CONFIG > .env.production
+      run: printf $PRODUCTION_CONFIG > .env.production
     - name: Decode production keystore properties
       env:
         PRODUCTION_KEYSTORE_PROPERTIES: ${{ secrets.PRODUCTION_KEYSTORE_PROPERTIES }}
