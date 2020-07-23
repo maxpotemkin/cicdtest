@@ -19,6 +19,10 @@ jobs:
         java-version: 1.8
     - name: install node_modules
       run: yarn install
+    - name: Decode production config
+      env:
+        SERVICE_ACCOUNT: ${{ secrets.PRODUCTION_CONFIG }}
+      run: echo $PRODUCTION_CONFIG > .env.production
     - name: Build with Gradle
       run: cd ./android && BABEL_ENV=production ./gradlew assembleRelease
     - name: Upload Artifact Apk
