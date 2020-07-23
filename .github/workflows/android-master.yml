@@ -23,10 +23,6 @@ jobs:
       env:
         PRODUCTION_CONFIG: ${{ secrets.PRODUCTION_CONFIG }}
       run: echo $PRODUCTION_CONFIG > .env.production
-    - name: PRINT
-      env:
-        PRODUCTION_KEYSTORE_PROPERTIES: ${{ secrets.PRODUCTION_KEYSTORE_PROPERTIES }}
-      run: echo $PRODUCTION_KEYSTORE_PROPERTIES
     - name: Decode production keystore properties
       env:
         PRODUCTION_KEYSTORE_PROPERTIES: ${{ secrets.PRODUCTION_KEYSTORE_PROPERTIES }}

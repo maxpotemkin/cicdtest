@@ -128,6 +128,8 @@ println '-----'
 println productionKeystorePropertiesFile
 assert file(productionKeystorePropertiesFile).exists()
 println '-----'
+println productionKeystoreProperties.count
+println '+++++++'
 if(productionKeystoreProperties['keyAlias']){
 println 'has keyAlias'
 println productionKeystoreProperties['keyAlias']
@@ -170,12 +172,12 @@ android {
             keyAlias 'androiddebugkey'
             keyPassword 'android'
         }
-        release {
-            keyAlias productionKeystoreProperties['keyAlias']
-            keyPassword productionKeystoreProperties['keyPassword']
-            storeFile file(productionKeystoreProperties['storeFile'])
-            storePassword productionKeystoreProperties['storePassword']
-        }
+  //      release {
+  //          keyAlias productionKeystoreProperties['keyAlias']
+  //          keyPassword productionKeystoreProperties['keyPassword']
+  //          storeFile file(productionKeystoreProperties['storeFile'])
+  //          storePassword productionKeystoreProperties['storePassword']
+  //      }
     }
     buildTypes {
         debug {
@@ -185,7 +187,7 @@ android {
         release {
             // Caution! In production, you need to generate your own keystore file.
             // see https://reactnative.dev/docs/signed-apk-android.
-            signingConfig signingConfigs.release
+            signingConfig signingConfigs.debug
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
