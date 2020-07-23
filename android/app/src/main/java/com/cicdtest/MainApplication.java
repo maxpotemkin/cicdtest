@@ -31,7 +31,11 @@ public class MainApplication extends Application implements ReactApplication {
 
         @Override
         protected String getJSMainModuleName() {
-          return "index";
+            if (BuildConfig.BUILD_TYPE == "storybookDev") {
+                return "storybook/index";
+            } else {
+                return "index";
+            }
         }
       };
 
