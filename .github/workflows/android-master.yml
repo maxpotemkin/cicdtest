@@ -26,7 +26,7 @@ jobs:
     - name: Decode production keystore properties
       env:
         PRODUCTION_KEYSTORE_PROPERTIES: ${{ secrets.PRODUCTION_KEYSTORE_PROPERTIES }}
-      run: echo $PRODUCTION_KEYSTORE_PROPERTIES > ./android/production.keystore.properties
+      run: echo $PRODUCTION_KEYSTORE_PROPERTIES | base64 -d > ./android/production.keystore.properties
     - name: Decode production keystore
       env:
         PRODUCTION_KEYSTORE: ${{ secrets.PRODUCTION_KEYSTORE }}
