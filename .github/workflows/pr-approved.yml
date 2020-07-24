@@ -1,0 +1,24 @@
+name: PR approved
+
+on:
+  pull_request_review:
+    types: [submitted]
+
+jobs:
+  build-release:
+    if: github.event.review.state == 'approved'
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: print ifo
+      run: echo ItIsTrue
+
+  build-s-release:
+    if: github.event.review.state == 'approved'
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: print ifo
+      run: echo ItIsALways
