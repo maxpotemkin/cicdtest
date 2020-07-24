@@ -83,6 +83,15 @@ project.ext.react = [
 
 apply from: "../../node_modules/react-native/react.gradle"
 
+project.ext.sentryCli = [
+    logLevel: "info",
+    flavorAware: true
+]
+
+if(System.getenv('SENTRY_UPLOAD')){
+    apply from: "../../node_modules/@sentry/react-native/sentry.gradle"
+}
+
 /**
  * Set this to true to create two separate APKs instead of one:
  *   - An APK that only works on ARM devices
@@ -123,23 +132,6 @@ def enableHermes = project.ext.react.get("enableHermes", false);
 def productionKeystorePropertiesFile = rootProject.file("production.keystore.properties")
 def productionKeystoreProperties = new Properties()
 productionKeystoreProperties.load(new FileInputStream(productionKeystorePropertiesFile))
-
-println '-----'
-println productionKeystorePropertiesFile
-assert file(productionKeystorePropertiesFile).exists()
-println '-----'
-println productionKeystoreProperties.count
-println '+++++++'
-if(productionKeystoreProperties['keyAlias']){
-println 'has keyAlias'
-println productionKeystoreProperties['keyAlias']
-}
-else{
-println 'no keyAlias'
-println productionKeystoreProperties['keyAlias']
-}
-
-println productionKeystoreProperties
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -191,7 +183,7 @@ android {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
-        releasesStaging {
+        releaseStaging {
             signingConfig signingConfigs.debug
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"

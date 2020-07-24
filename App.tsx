@@ -16,6 +16,7 @@ import {
   View,
   Text,
   StatusBar,
+    Button,
 } from 'react-native';
 
 import {
@@ -50,6 +51,11 @@ const App = () => {
             </View>
           )}
           <View style={styles.body}>
+            <Button title={'Crash me'
+            } onPress={() => {
+              const t = {}
+              const a = t.q.w
+            }} />
             <View style={styles.sectionContainer}>
               <Text style={styles.sectionTitle}>Step One</Text>
               <Text style={styles.sectionDescription}>
