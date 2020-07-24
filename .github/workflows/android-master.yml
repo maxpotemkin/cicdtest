@@ -34,7 +34,7 @@ jobs:
     - name: Decode sentry properties
       env:
         SENTRY_PRODUCTION_PROPERTIES: ${{ secrets.SENTRY_PRODUCTION_PROPERTIES }}
-      run: echo SENTRY_PRODUCTION_PROPERTIES | base64 -d > ./android/sentry-release.properties
+      run: echo $SENTRY_PRODUCTION_PROPERTIES | base64 -d > ./android/sentry-release.properties
     - name: Build with Gradle
       run: cd ./android && SENTRY_UPLOAD=true BABEL_ENV=production ./gradlew assembleRelease
     - name: Upload Artifact Apk
