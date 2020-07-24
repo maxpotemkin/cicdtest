@@ -3,6 +3,7 @@ name: PR approved
 on:
   pull_request_review:
     types: [submitted]
+    branches: ['master']
 
 jobs:
   build-release:
