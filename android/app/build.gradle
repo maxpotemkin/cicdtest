@@ -133,6 +133,14 @@ def productionKeystorePropertiesFile = rootProject.file("production.keystore.pro
 def productionKeystoreProperties = new Properties()
 productionKeystoreProperties.load(new FileInputStream(productionKeystorePropertiesFile))
 
+if (productionKeystorePropertiesFile.exists()) {
+    productionKeystoreProperties.load(new FileInputStream(productionKeystorePropertiesFile))
+}
+
+def verCode = (System.getenv("GITHUB_RUN_NUMBER") ?: "1").toInteger()
+
+println "version code = $verCode"
+
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
 
@@ -145,8 +153,8 @@ android {
         applicationId "com.cicdtest"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
+        versionCode verCode
+        versionName "1.0.$verCode"
         resValue "string", "build_config_package", "com.cicdtest"
     }
     splits {
