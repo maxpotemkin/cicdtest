@@ -196,7 +196,7 @@ android {
             matchingFallbacks = ['debug']
         }
         storybookRelease {
-            initWith release
+            signingConfig signingConfigs.debug
             applicationIdSuffix ".storybook"
             matchingFallbacks = ['release']
         }
