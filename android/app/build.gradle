@@ -131,8 +131,6 @@ def enableHermes = project.ext.react.get("enableHermes", false);
 
 def productionKeystorePropertiesFile = rootProject.file("production.keystore.properties")
 def productionKeystoreProperties = new Properties()
-productionKeystoreProperties.load(new FileInputStream(productionKeystorePropertiesFile))
-
 if (productionKeystorePropertiesFile.exists()) {
     productionKeystoreProperties.load(new FileInputStream(productionKeystorePropertiesFile))
 }
