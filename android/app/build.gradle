@@ -171,10 +171,12 @@ android {
             keyPassword 'android'
         }
         release {
-            keyAlias productionKeystoreProperties['keyAlias']
-            keyPassword productionKeystoreProperties['keyPassword']
-            storeFile file(productionKeystoreProperties['storeFile'])
-            storePassword productionKeystoreProperties['storePassword']
+            if(productionKeystorePropertiesFile.exists()){
+                keyAlias productionKeystoreProperties['keyAlias']
+                keyPassword productionKeystoreProperties['keyPassword']
+                storeFile file(productionKeystoreProperties['storeFile'])
+                storePassword productionKeystoreProperties['storePassword']
+            }
         }
     }
     buildTypes {
