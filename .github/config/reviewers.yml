@@ -1,0 +1,7 @@
+reviewers:
+  defaults:
+    - maxpotemkin
+
+  per_author:
+    maxpotemkin:
+      - mmaaxxw
